@@ -1,1 +1,1 @@
-# sber-animals-detection
+![](https://github.com/john-carrington/sber-animals-detection/blob/main/.git-images/title.png)

@@ -1,0 +1,405 @@
+body {
+    margin: 0 0;
+}
+
+.bg_img {
+    background-color: rgba(52, 52, 52);
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+
+.container {
+    margin: 0px 50px;
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_tittle {
+    font-weight: bold;
+    color: white;
+
+}
+
+.header_item {
+    margin: 0 0px 0 100px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+
+    position: relative;
+    display: inline-block; /* Чтобы применить эффекты */
+    transition: 0.3s; 
+}
+
+.header_item::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 1px; /* Толщина подчеркивания */
+    background-color: #52afed; /* Цвет подчеркивания */
+    transition: 0.3s ease; /* Плавный переход для подчеркивания */
+}
+.header_item:hover {
+    color: #8accf8; /* Цвет текста при наведении */
+}
+
+.header_item:hover::after {
+    width: 100%; /* Расширяем подчеркивание при наведении */
+    left: 0; /* Сдвигаем подчеркивание влево */
+}
+
+
+
+.images_inf {
+
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+    align-items: center;    /* Горизонтальное выравнивание по центру */       /* Высота контейнера */
+    justify-content: space-between;
+}
+
+
+
+.bg-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    object-fit: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    transform: scale(1);
+    z-index: -1;
+  }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+    padding-top: 60px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+section {
+    min-width: 1000px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    display: flex;
+    max-width: 1000px;
+    max-height: 200px;
+    gap: 20px;
+    flex-grow: wrap;
+  }
+
+  
+  .carousel-image:hover {
+    cursor: pointer;
+  }
+  
+  .carousel.sliding-transition {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-image {
+    flex-grow: 1;
+    max-width: calc(33.333% - 20px); /* Максимальная ширина для каждого изображения */
+    max-height: 200px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
+    object-fit: cover; /* Сохраняем пропорции изображений */
+  }
+
+
+  
+  
+  .arrow-button {
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    cursor: pointer;
+    background: rgb(255, 255, 255, 0.3);
+    width: 36px;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    -webkit-box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.5);
+  }
+  
+  span {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .left-arrow {
+    left: 20px;
+  }
+  
+  .right-arrow {
+    right: 20px;
+  }
+
+
+
+.form_for_neuro {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.input-button input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+
+.input-file-row {
+	display: inline-block;
+}
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file span {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+	cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(65, 65, 65);
+    cursor: pointer;
+    margin-top: 20px;         /* Высота контейнера */
+    padding: 20px 40px;
+    border-radius: 20px;
+    transition: 0.5s;
+    border: 3px solid white;;
+    text-decoration: none;
+    overflow: hidden;
+    outline: none;
+    background-color: white;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+.input-file:hover span {
+    color: white;
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+.input-file:active span {
+    box-shadow: none;          /* Удаление тени при нажатии */
+    outline: none;
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при нажатии */         /* Отключение переходов при нажатии */
+}
+
+
+.upload-button {
+    margin-left: 10px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;         /* Высота контейнера */
+    padding: 20px 40px;
+    border-radius: 20px;
+    transition: 0.5s;
+    border: 3px solid white;;
+    text-decoration: none;
+    overflow: hidden;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.upload-button:hover {
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+.upload-button:active {
+    box-shadow: none;          /* Удаление тени при нажатии */
+    outline: none;
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при нажатии */
+    transition: none;         /* Отключение переходов при нажатии */
+}
+
+
+.active-button {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+	cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(65, 65, 65);
+    cursor: pointer;
+    margin-top: 20px;         /* Высота контейнера */
+    padding: 20px 0;
+    border-radius: 20px;
+    transition: 0.5s;
+    border: 3px solid white;;
+    text-decoration: none;
+    overflow: hidden;
+    outline: none;
+    background-color: white;
+    color:  white;
+}
+
+
+
+.button_href {
+    color: rgb(65, 65, 65);
+    text-decoration: none;
+    transition: 0.5s;
+    padding: 20px 55px;
+
+}
+
+
+.active-button:hover {
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+
+.active-button:active {
+    box-shadow: none;          /* Удаление тени при нажатии */
+    outline: none;
+    border-color: #573ce0;
+    background-color: #573ce0; /* Изменение цвета фона при нажатии */         /* Отключение переходов при нажатии */
+}
+
+.active-button:hover .button_href {
+    color: white;
+}
+
+#preview {
+    margin-top: 46px;    
+}
+
+
+#preview img {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 3px white solid;
+}
+
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.buttons {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.images_inf_title {
+    color: white;
+    margin-top: 45px;
+
+}
+
+
+
+table {
+    width: 70%;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 5px;
+}
+
+th, td {
+    padding: 12px;
+    color: white;
+}
+
+th {
+    background-color: #000000;
+}
+
+tr {
+    background-color: #2e2e2e;
+    transition: 0.5s;
+    border-radius: 30px;
+}
+
+tr:hover {
+    background-color: #141414;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="src/imgs.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bg_img">
+        <div class="container">
+            <div class="header">
+                    <h1 class="header_tittle">АЛЬФА В БАНКЕ</h1>
+                    <div class="header_items">
+                    <a class='header_item' href="">О ПРОЕКТЕ</a>
+                    <a class='header_item' href="">КОМАНДА</a>
+                    <a class='header_item' href="">СКАЧАТЬ МОДЕЛЬ</a>
+                </div>
+            </div>
+
+            <div class="images_inf">
+                <section>
+                    <img src='https://picsum.photos/id/23/1000' alt='bg image' class='bg-image' />
+                  
+                    <div class="carousel-container">
+                      <div class="carousel">
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
+                        <img src="src/scale_1200.jpeg" alt="Image" class='carousel-image'>
+                      </div>
+                      <button class="arrow-button left-arrow"><span>&#8249;</span></button>
+                      <button class="arrow-button right-arrow"><span>&#8250;</span></button>
+                    </div>
+
+                    <div id="modal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modal-img">
+                    </div>
+
+                    
+                    
+                  </section>
+
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>Млекопитающие</th>
+                            <th>Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Марал</td>
+                            <td class="metric_count">50</td>
+                        </tr>
+                        <tr>
+                            <td>Медведь</td>
+                            <td class="metric_count">25</td>
+                        </tr>
+                        <tr>
+                            <td>Олень</td>
+                            <td class="metric_count">25</td>
+                        </tr>
+                        <tr>
+                            <td>Олень</td>
+                            <td class="metric_count">25</td> 
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+            <form id="uploadForm" enctype="multipart/form-data" method="post">
+                <label class="input-file">
+                    <input name="path" class="input-button" type="file" id="fileInput" accept=".zip, image/*" multiple>
+                    <span>Выберите файл</span>
+                </label>
+                <input type="submit" class="upload-button" value="Загрузить ещё фотографии" name="path">
+                <button class="active-button" href="imgs.html"><a class="button_href" href="imgs.html">Перейти к анализу снимков</a></button>
+            </form>
+            <div id="preview"></div>
+        </div>
+
+
+        </div>
+    </div>
+
+    <script src="src/imgs.js"></script>
+</body>
+</html>

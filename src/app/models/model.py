@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 from torchvision.models.detection import maskrcnn_resnet50_fpn
 
 # Загрузка модели

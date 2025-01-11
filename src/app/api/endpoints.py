@@ -15,6 +15,8 @@ import base64
 router = APIRouter()
 
 
+
+
 @router.post("/predict/")
 async def predict_images(files: List[UploadFile] = File(...)):
     """

@@ -10,46 +10,15 @@ import zipfile
 import os
 import shutil
 from typing import List
+import base64
 
 router = APIRouter()
-
-UPLOAD_FOLDER = "./temp/uploads"
-PROCESSED_FOLDER = "./temp/processed"
-
-# Создание временных папок для обработки
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(PROCESSED_FOLDER, exist_ok=True)
-
-
-@router.post("/upload/")
-async def upload_images(files: List[UploadFile] = File(...)):
-    """
-    Загрузка изображений (одного, нескольких или ZIP-архива) для обработки.
-    """
-    results = []
-    try:
-        for file in files:
-            if file.filename.endswith(".zip"):
-                # Извлечение изображений из ZIP-архива
-                extracted_files = await extract_images_from_zip(file, UPLOAD_FOLDER)
-                results.extend(extracted_files)
-            else:
-                # Сохранение обычных изображений
-                file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-                with open(file_path, "wb") as f:
-                    f.write(await file.read())
-                results.append(file_path)
-    except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Ошибка загрузки: {str(e)}")
-
-    return {"uploaded_files": results}
 
 
 @router.post("/predict/")
 async def predict_images(files: List[UploadFile] = File(...)):
     """
-    Выполнение предсказаний для загруженных изображений.
+    Выполнение предсказаний для загруженных изображений и возврат обработанного изображения.
     """
     predictions = []
     for file in files:
@@ -66,26 +35,19 @@ async def predict_images(files: List[UploadFile] = File(...)):
         # Визуализация
         processed_image = draw_predictions(image, processed_predictions)
 
-        # Сохранение визуализированного изображения
-        processed_path = os.path.join(PROCESSED_FOLDER, file.filename)
-        processed_image.save(processed_path)
+        # Сохранение визуализированного изображения в буфер памяти
+        img_byte_arr = io.BytesIO()
+        # Выберите формат по необходимости
+        processed_image.save(img_byte_arr, format="PNG")
+        img_byte_arr = img_byte_arr.getvalue()
+
+        # Кодирование изображения в Base64
+        base64_image = base64.b64encode(img_byte_arr).decode('utf-8')
 
         predictions.append({
             "file_name": file.filename,
-            "classes": processed_predictions["classes"],
             "num_boxes": len(processed_predictions["boxes"]),
-            "processed_image": processed_path
+            "processed_image_base64": base64_image
         })
 
-    return {"predictions": predictions}
-
-
-@router.get("/processed/{file_name}")
-def get_processed_image(file_name: str):
-    """
-    Получение обработанного изображения с боксами.
-    """
-    file_path = os.path.join(PROCESSED_FOLDER, file_name)
-    if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="Файл не найден")
-    return FileResponse(file_path)
+    return predictions

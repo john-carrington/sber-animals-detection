@@ -1,0 +1,319 @@
+body {
+  margin: 0 0;
+}
+
+.bg_img {
+  background-image: url(src/view-dog-with-funny-outfit.jpg);
+  position: relative;
+  font-family: Arial, sans-serif;height: 100vh; /* Высота на весь экран */
+  background-size: cover; /* Заполнение всего экрана */
+  background-position: center;
+  z-index: 1;
+}
+
+.bg_img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный */
+}
+
+.container {
+  margin: 0px 50px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_tittle {
+  font-weight: bold;
+  color: white;
+
+}
+
+.header_item {
+  margin: 0 0px 0 100px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+
+  position: relative;
+  display: inline-block; /* Чтобы применить эффекты */
+  transition: 0.3s; 
+}
+
+.header_item::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1px; /* Толщина подчеркивания */
+  background-color: #52afed; /* Цвет подчеркивания */
+  transition: 0.3s ease; /* Плавный переход для подчеркивания */
+}
+.header_item:hover {
+  color: #8accf8; /* Цвет текста при наведении */
+}
+
+.header_item:hover::after {
+  width: 100%; /* Расширяем подчеркивание при наведении */
+  left: 0; /* Сдвигаем подчеркивание влево */
+}
+
+/* Плавное возвращение состояния после увода мыши */
+
+.presentation {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  align-items: center;    /* Горизонтальное выравнивание по центру */       /* Высота контейнера */
+  justify-content: space-between;
+
+}
+
+.presentation_text {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Times New Roman';
+  max-width: 300px; /* Добавляем отступ снизу для первого элемента */
+  word-wrap: break-word; /* Переносит текст на новую строку, если он не помещается */
+  overflow-wrap: break-word; /* Переносит текст на новую строку, если он не помещается */
+}
+
+
+.presentation_tittle {
+  color: white;
+}
+
+.presentation_button {
+  margin-left: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;         /* Высота контейнера */
+  padding: 20px 40px;
+  border-radius: 20px;
+  transition: 0.5s;
+  border: 3px solid white;;
+  text-decoration: none;
+  overflow: hidden;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.presentation_button:hover {
+  font-size: 15px;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+.presentation_button:active {
+  box-shadow: none;          /* Удаление тени при нажатии */
+  outline: none;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при нажатии */
+  transition: none;         /* Отключение переходов при нажатии */
+}
+
+.bg_main {
+  padding: 150px 0 150px 0;
+  width: 100%;
+  background-color: rgb(52, 52, 52);
+}
+
+.main_func {
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  align-items: center;    /* Горизонтальное выравнивание по центру */       /* Высота контейнера */
+  justify-content: space-between;
+}
+
+.main_func_title {
+  color: white;
+  font-family: Arial, sans-serif; /* Высота на весь экран */
+
+}
+
+.main_func_txt {
+  max-width: 300px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_for_main_func {
+  margin: 0;
+}
+
+
+
+#preview {
+  margin-top: 20px;    
+}
+
+
+#preview img {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 3px white solid;
+}
+
+.form_for_neuro {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.input-button input[type=file] {
+position: absolute;
+z-index: -1;
+opacity: 0;
+display: block;
+width: 0;
+height: 0;
+}
+
+
+.input-file-row {
+  display: inline-block;
+}
+.input-file {
+  position: relative;
+  display: inline-block;
+}
+.input-file span {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+  cursor: pointer;
+  margin-top: 20px;         /* Высота контейнера */
+  padding: 20px 40px;
+  border-radius: 20px;
+  transition: 0.5s;
+  border: 3px solid white;;
+  text-decoration: none;
+  overflow: hidden;
+  outline: none;
+  background-color: white;
+}
+.input-file input[type=file] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+.input-file:hover span {
+  color: white;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+.input-file:active span {
+  box-shadow: none;          /* Удаление тени при нажатии */
+  outline: none;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при нажатии */         /* Отключение переходов при нажатии */
+}
+
+
+.upload-button {
+  margin-left: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;         /* Высота контейнера */
+  padding: 20px 40px;
+  border-radius: 20px;
+  transition: 0.5s;
+  border: 3px solid white;;
+  text-decoration: none;
+  overflow: hidden;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.upload-button:hover {
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+.upload-button:active {
+  box-shadow: none;          /* Удаление тени при нажатии */
+  outline: none;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при нажатии */
+  transition: none;         /* Отключение переходов при нажатии */
+}
+
+
+.active-button {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+  margin-top: 20px;         /* Высота контейнера */
+  padding: 20px 0px;
+  border-radius: 20px;
+  transition: 0.5s;
+  border: 3px solid white;;
+  text-decoration: none;
+  overflow: hidden;
+  outline: none;
+  background-color: white;
+  color:  white;
+}
+
+
+.button_href {
+  color: rgb(65, 65, 65);
+  text-decoration: none;
+  transition: 0.5s;
+  padding: 20px 40px;
+
+}
+
+
+.active-button:hover {
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при наведении */
+}
+
+
+.active-button:active {
+  box-shadow: none;          /* Удаление тени при нажатии */
+  outline: none;
+  border-color: #573ce0;
+  background-color: #573ce0; /* Изменение цвета фона при нажатии */         /* Отключение переходов при нажатии */
+}
+
+.active-button:hover .button_href {
+  color: white;
+}

@@ -97,7 +97,7 @@ body {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 800px;
+    max-width: 700px;
     padding-top: 60px;
 }
 
@@ -128,14 +128,14 @@ section {
   .carousel-container {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .carousel {
     display: flex;
-    max-width: 1000px;
-    max-height: 200px;
-    gap: 20px;
-    flex-grow: wrap;
+    transition: transform 0.5s ease;
   }
 
   
@@ -148,7 +148,6 @@ section {
   }
   
   .carousel-image {
-    flex-grow: 1;
     max-width: calc(33.333% - 20px); /* Максимальная ширина для каждого изображения */
     max-height: 200px;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
@@ -157,6 +156,13 @@ section {
     object-fit: cover; /* Сохраняем пропорции изображений */
   }
 
+  .image-container {
+    display: flex;
+    justify-content: center; /* Центрирует элементы по горизонтали */
+    align-items: center; /* Центрирует элементы по вертикали */
+    gap: 20px; /* Задает расстояние между элементами */
+    flex-wrap: nowrap; /* Предотвращает перенос элементов на новую строку */
+}
 
   
   

@@ -23,14 +23,8 @@
                     <img src='https://picsum.photos/id/23/1000' alt='bg image' class='bg-image' />
                   
                     <div class="carousel-container">
-                      <div class="carousel">
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/view-dog-with-funny-outfit.jpg" alt="Image" class='carousel-image'>
-                        <img src="src/scale_1200.jpeg" alt="Image" class='carousel-image'>
+                      <div class="carousel" id="carousel">
+                        <div id="results" class="image-container"></div>
                       </div>
                       <button class="arrow-button left-arrow"><span>&#8249;</span></button>
                       <button class="arrow-button right-arrow"><span>&#8250;</span></button>
@@ -76,18 +70,17 @@
                 </div>
 
             </div>
-
-
-            <div class="buttons">
+        <div class="buttons">
             <form id="uploadForm" enctype="multipart/form-data" method="post">
                 <label class="input-file">
                     <input name="path" class="input-button" type="file" id="fileInput" accept=".zip, image/*" multiple>
                     <span>Выберите файл</span>
                 </label>
                 <input type="submit" class="upload-button" value="Загрузить ещё фотографии" name="path">
-                <button class="active-button" href="imgs.html"><a class="button_href" href="imgs.html">Перейти к анализу снимков</a></button>
+                <button id="activeButton" class="active-button" href="imgs.html"><a class="button_href" href="imgs.html">Перейти к анализу снимков</a></button>
             </form>
             <div id="preview"></div>
+            <div id="results" class='carousel-image'></div> <!-- Добавлен элемент для отображения результатов -->
         </div>
 
 

@@ -9,18 +9,18 @@ let currentIndex = 0;
 let images;
 let totalImages;
 const imageWidth = 300;
-const carouselWidth = 900; // Фиксированная ширина контейнера карусели
+const carouselWidth = 900;
 
 leftArrow.addEventListener("click", () => {
-    if (totalImages > 5) {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    if (currentIndex > 0 && totalImages > 4) {
+        currentIndex--;
         updateCarousel();
     }
 });
 
 rightArrow.addEventListener("click", () => {
-    if (totalImages > 5) {
-        currentIndex = (currentIndex + 1) % totalImages;
+    if (currentIndex < totalImages - 1 && totalImages > 4) {
+        currentIndex++;
         updateCarousel();
     }
 });
@@ -90,7 +90,7 @@ function reloadPage() {
 }
 
 function displayResults() {
-    const resultsDiv = document.getElementById('results');
+    const resultsDiv = document.getElementById('carousel');
     resultsDiv.innerHTML = ''; // Очищаем предыдущие результаты
 
     const predictions = JSON.parse(localStorage.getItem('predictions'));
@@ -119,12 +119,21 @@ function displayResults() {
 
 function updateCarousel() {
     const offset = currentIndex * (imageWidth + 20);
-    carousel.style.transform = `translateX(-${offset}px)`;
+    if (currentIndex === 0) {
+        carousel.style.transform = `translateX(${300}px)`;
+    } else {
+        carousel.style.transform = `translateX(-${offset/2}px)`;
+    }
     carousel.classList.add("sliding-transition");
 
     setTimeout(() => {
         carousel.classList.remove("sliding-transition");
     }, 490);
+
+    // Проверка, нужно ли блокировать кнопки:
+    // Отключаем кнопки в зависимости от положения карусели
+    leftArrow.disabled = currentIndex === (0 - totalImages); // Блокируем кнопку слева на первом изображении
+    rightArrow.disabled = currentIndex === Math.floor(totalImages / 2); // Блокируем кнопку справа на последнем изображении
 }
 
 // Загружаем результаты при загрузке страницы

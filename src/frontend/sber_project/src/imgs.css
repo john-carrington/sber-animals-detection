@@ -6,6 +6,7 @@ body {
     background-color: rgba(52, 52, 52);
     font-family: Arial, sans-serif;
     width: 100%;
+    z-index: 100;
 }
 
 
@@ -129,13 +130,17 @@ section {
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
+    align-items: center;
+    justify-content: center;
   }
   
   .carousel {
     display: flex;
     transition: transform 0.5s ease;
+    align-items: center;
+    justify-content: center;
   }
 
   
@@ -148,6 +153,7 @@ section {
   }
   
   .carousel-image {
+    margin-right: 20px;
     max-width: calc(33.333% - 20px); /* Максимальная ширина для каждого изображения */
     max-height: 200px;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
@@ -408,4 +414,10 @@ tr {
 
 tr:hover {
     background-color: #141414;
+}
+
+
+.left-arrow:disabled, .right-arrow:disabled {
+    opacity: 0.5;
+    pointer-events: none; /* Заблокирует клики */
 }

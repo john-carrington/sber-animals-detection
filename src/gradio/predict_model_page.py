@@ -15,7 +15,6 @@ def predict(images):
 
     data = {
         'minConfidence': '0.25',
-        'minSize': '0',
         'maxObjects': '100'
     }
 

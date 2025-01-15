@@ -34,7 +34,6 @@ window.addEventListener('click', function(event) {
         modal.style.display = 'none';
     }
 });
-
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Предотвращаем стандартное поведение формы
 
@@ -42,11 +41,10 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     const preview = document.getElementById('preview');
     const files = fileInput.files;
     const formData = new FormData();
-
     // Добавляем файлы в FormData
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        formData.append('files', file);
+        formData.append('file', file);
 
         // Отображаем предварительный просмотр изображений
         const reader = new FileReader();
@@ -58,11 +56,18 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         reader.readAsDataURL(file);
     }
 
+    // Добавляем параметры minConfidence и maxObjects в formData
+    formData.append('minConfidence', '0.25');
+    formData.append('maxObjects', '100');
+
     // Отправляем файлы на сервер
     try {
         alert('Соединение устанавливается, пожалуйста подождите ответа');
-        const response = await fetch('http://127.0.0.1:8000/api/predict/', {
+        const response = await fetch('http://127.0.0.1:8000/predict/', {
             method: 'POST',
+            headers: {
+                'accept': 'application/json'
+            },
             body: formData
         });
 

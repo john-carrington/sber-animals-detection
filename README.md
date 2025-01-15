@@ -1,4 +1,4 @@
-![Title Image](https://github.com/john-carrington/sber-animals-detection/blob/main/.git-images/title.png)
+![Title Image](https://github.com/john-carrington/sber-animals-detection/blob/main/.git-images/title_repo.png)
 
 
 # Разработка модели детекции млекопитающих по фото с БПЛА

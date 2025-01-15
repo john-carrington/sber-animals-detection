@@ -1,13 +1,9 @@
 import cv2
 import uuid
 import json
-import base64
-
-
 from src.app.config import MODEL_PATH
 from ultralytics import YOLO
 from pathlib import Path
-
 
 model = YOLO(MODEL_PATH)
 
@@ -19,9 +15,7 @@ def process_image(image_path: Path, min_confidence, max_objects) -> dict:
     result_json: json.dump = {
         'img_name': str,
         'count_boxes': int,
-        'results': list(),
-        'img_bytes': ''
-
+        'results': list()
     }
 
     for result in results:
@@ -49,9 +43,9 @@ def process_image(image_path: Path, min_confidence, max_objects) -> dict:
             })
 
             x1, y1, x2, y2 = map(int, box.xyxy[0])
-            cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
             cv2.putText(image, label, (x1, y1 - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 0, 0), 2)
 
     processed_dir = Path("processed")
     processed_dir.mkdir(exist_ok=True)
@@ -61,9 +55,6 @@ def process_image(image_path: Path, min_confidence, max_objects) -> dict:
 
     processed_image_path = processed_dir / image_name
     cv2.imwrite(str(processed_image_path), image)
-
-    with open(processed_image_path, "rb") as image_file:
-        result_json['img_bytes'] = base64.b64encode(image_file.read())
 
     print(f"Saved processed image to: {processed_image_path}")
     return result_json

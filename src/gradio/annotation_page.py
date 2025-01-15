@@ -1,6 +1,7 @@
 import gradio as gr
 from gradio_image_annotation import image_annotator
 
+
 example_annotation = {
     "image": "https://gradio-builds.s3.amazonaws.com/demo-files/base.png",
     "boxes": [
@@ -64,11 +65,31 @@ def crop(annotations):
 def get_boxes_json(annotations):
     return annotations["boxes"]
 
-    annotator = image_annotator(
-        example_annotation,
-        label_list=["Person", "Vehicle"],
-        label_colors=[(0, 255, 0), (255, 0, 0)],
-    )
-    button_get = gr.Button("Get bounding boxes")
-    json_boxes = gr.JSON()
-    button_get.click(get_boxes_json, annotator, json_boxes)
+
+with gr.Blocks() as demo:
+    with gr.Tab("Object annotation", id="tab_object_annotation"):
+        annotator = image_annotator(
+            example_annotation,
+            label_list=["Person", "Vehicle"],
+            label_colors=[(0, 255, 0), (255, 0, 0)],
+        )
+        button_get = gr.Button("Get bounding boxes")
+        json_boxes = gr.JSON()
+        button_get.click(get_boxes_json, annotator, json_boxes)
+
+    with gr.Tab("Crop", id="tab_crop"):
+        with gr.Row():
+            annotator_crop = image_annotator(
+                examples_crop[0],
+                image_type="numpy",
+                disable_edit_boxes=True,
+                single_box=True,
+            )
+            image_crop = gr.Image()
+        button_crop = gr.Button("Crop")
+        button_crop.click(crop, annotator_crop, image_crop)
+
+        gr.Examples(examples_crop, annotator_crop)
+
+if __name__ == "__main__":
+    demo.launch()

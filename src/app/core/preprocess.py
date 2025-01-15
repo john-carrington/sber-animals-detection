@@ -1,35 +1,19 @@
-from PIL import Image
-from torchvision import transforms
-import zipfile
-import os
-import io
+from zipfile import ZipFile
+from pathlib import Path
+from src.app.models.model import process_image
 
 
-def preprocess_image(image):
-    """
-    Преобразование изображения для передачи в модель.
-    """
-    transform = transforms.Compose([
-        transforms.ToTensor()
-    ])
-    return transform(image)
+async def process_zip(file, min_confidence, min_size, max_objects):
+    zip_path = Path("uploads") / file.filename
+    with open(zip_path, "wb") as buffer:
+        buffer.write(await file.read())
 
+    zip_results = []
+    with ZipFile(zip_path, "r") as input_zip:
+        for image_path in input_zip.namelist():
+            input_zip.extract(image_path, "uploads")
+            image_result = process_image(
+                Path("uploads") / image_path, min_confidence, min_size, max_objects)
+            zip_results.append(image_result)
 
-async def extract_images_from_zip(zip_file, output_folder):
-    """
-    Извлечение изображений из ZIP-архива.
-    """
-    if not zipfile.is_zipfile(zip_file.file):
-        raise ValueError("Файл не является ZIP-архивом")
-
-    zip_file.file.seek(0)
-    with zipfile.ZipFile(io.BytesIO(await zip_file.read())) as zf:
-        extracted_files = []
-        for file_name in zf.namelist():
-            if file_name.lower().endswith((".png", ".jpg", ".jpeg")):
-                extracted_path = os.path.join(output_folder, file_name)
-                with zf.open(file_name) as f:
-                    with open(extracted_path, "wb") as out_file:
-                        out_file.write(f.read())
-                extracted_files.append(extracted_path)
-    return extracted_files
+    return zip_results

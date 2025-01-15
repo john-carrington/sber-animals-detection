@@ -5,6 +5,7 @@ from predict_model_page import *
 
 def main() -> None:
     demo = gr.TabbedInterface(
+
         [predict_page],  # Вкладки
         ["Анализ изображений"]  # Названия вкладок
     )

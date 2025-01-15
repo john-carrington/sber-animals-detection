@@ -3,7 +3,7 @@ from pathlib import Path
 from src.app.models.model import process_image
 
 
-async def process_zip(file, min_confidence, min_size, max_objects):
+async def process_zip(file, min_confidence, max_objects):
     zip_path = Path("uploads") / file.filename
     with open(zip_path, "wb") as buffer:
         buffer.write(await file.read())
@@ -13,7 +13,7 @@ async def process_zip(file, min_confidence, min_size, max_objects):
         for image_path in input_zip.namelist():
             input_zip.extract(image_path, "uploads")
             image_result = process_image(
-                Path("uploads") / image_path, min_confidence, min_size, max_objects)
+                Path("uploads") / image_path, min_confidence, max_objects)
             zip_results.append(image_result)
 
     return zip_results

@@ -1,7 +1,7 @@
 import cv2
 import uuid
 import json
-from app.config import MODEL_PATH
+from src.app.config import MODEL_PATH
 from ultralytics import YOLO
 from pathlib import Path
 

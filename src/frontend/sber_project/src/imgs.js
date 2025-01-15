@@ -34,6 +34,8 @@ window.addEventListener('click', function(event) {
         modal.style.display = 'none';
     }
 });
+
+
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Предотвращаем стандартное поведение формы
 
@@ -60,7 +62,6 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     formData.append('minConfidence', '0.25');
     formData.append('maxObjects', '100');
 
-    // Отправляем файлы на сервер
     try {
         alert('Соединение устанавливается, пожалуйста подождите ответа');
         const response = await fetch('http://127.0.0.1:8000/predict/', {
@@ -79,7 +80,10 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         // Сохраняем результаты в localStorage
         localStorage.setItem('predictions', JSON.stringify(predictions));
         alert('Файлы успешно загружены и обработаны. Нажмите "Перейти к анализу снимков" для просмотра результатов.');
-        
+
+        // Обновляем отображение результатов
+        displayResults();
+
     } catch (error) {
         console.error('Error uploading files:', error);
         alert('Ошибка при загрузке файлов. Пожалуйста, попробуйте еще раз.');
@@ -101,10 +105,11 @@ function displayResults() {
     resultsDiv.innerHTML = ''; // Очищаем предыдущие результаты
 
     const predictions = JSON.parse(localStorage.getItem('predictions'));
-    if (predictions) {
-        predictions.forEach(prediction => {
+    if (predictions && predictions.results) {
+        predictions.results.forEach(prediction => {
             const img = document.createElement('img');
             img.src = `data:image/png;base64,${prediction.processed_image_base64}`;
+            img.alt = prediction.file_name;
             img.className = 'carousel-image';
             img.style.maxWidth = `${imageWidth}px`;
             img.addEventListener('click', function() {
@@ -121,7 +126,7 @@ function displayResults() {
         updateCarousel();
 
         // Заполняем таблицу данными
-        fillTableWithPredictions(predictions);
+        fillTableWithPredictions(predictions.results);
     } else {
         resultsDiv.innerHTML = '<p>Нет результатов для отображения.</p>';
     }
@@ -161,14 +166,14 @@ function fillTableWithPredictions(predictions) {
 
         // Создаем ячейку для названия
         const nameCell = document.createElement('td');
-        nameCell.textContent = prediction.file_name;
+        nameCell.textContent = prediction.img_name;
         row.appendChild(nameCell);
 
-        // Создаем ячейку для num_boxes
-        const numBoxesCell = document.createElement('td');
-        numBoxesCell.className = "metric_count";  // Присваиваем класс для стилизации
-        numBoxesCell.textContent = prediction.num_boxes;
-        row.appendChild(numBoxesCell);
+        // Создаем ячейку для count_boxes
+        const countBoxesCell = document.createElement('td');
+        countBoxesCell.className = "metric_count";  // Присваиваем класс для стилизации
+        countBoxesCell.textContent = prediction.count_boxes;
+        row.appendChild(countBoxesCell);
 
         // Добавляем строку в tbody
         tbody.appendChild(row);

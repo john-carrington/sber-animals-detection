@@ -1,21 +1,11 @@
-from pathlib import Path
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from src.app.models.model import process_image
 from src.app.core.preprocess import process_zip
-from src.app.core.postprocess import process_predictions
-from src.app.core.visualization import draw_predictions
-from PIL import Image
-import io
 from typing import List
-import base64
+from src.app.config import *
 
 router = APIRouter()
-
-UPLOAD_DIR = Path("uploads")
-PROCESSED_DIR = Path("processed")
-UPLOAD_DIR.mkdir(exist_ok=True)
-PROCESSED_DIR.mkdir(exist_ok=True)
 
 
 @router.post("/predict/")

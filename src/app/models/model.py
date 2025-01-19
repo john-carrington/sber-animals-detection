@@ -43,9 +43,9 @@ def process_image(image_path: Path, min_confidence, max_objects) -> dict:
             })
 
             x1, y1, x2, y2 = map(int, box.xyxy[0])
-            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
+            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 1)
             cv2.putText(image, label, (x1, y1 - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 0, 0), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 0, 0), 1)
 
     processed_dir = Path("processed")
     processed_dir.mkdir(exist_ok=True)
